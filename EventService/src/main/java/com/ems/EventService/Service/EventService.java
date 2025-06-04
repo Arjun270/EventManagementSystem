@@ -3,11 +3,13 @@ package com.ems.EventService.Service;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.ems.EventService.Client.UserClient;
 import com.ems.EventService.Dto.EventDto;
 import com.ems.EventService.Dto.EventResponseDto;
+import com.ems.EventService.Dto.OrganizerDto;
 import com.ems.EventService.Entity.Event;
 import com.ems.EventService.Exceptions.EventNotFoundException;
 import com.ems.EventService.Exceptions.InvalidOrganizerIDException;
@@ -25,16 +27,17 @@ public class EventService {
 	
 	private final UserClient userClient;
 
-	
 	//create
 	public EventDto createEvent(EventDto event) {
-		// TODO Auto-generated method stub
-		String role = userClient.getRoleById(event.getOrganizerId());
-		if (role == null || !role.equals("ORGANIZER")) {
-		    throw new InvalidOrganizerIDException("Organizer does not exist or has an invalid role.");
-		}
-		return EntityDtoConversion.EntitytoDto(eventRepository.save(EntityDtoConversion.DtotoEntity(event)));
-
+	    // Fetch organizer details
+	    OrganizerDto organizer = userClient.getOrganizerById(event.getOrganizerId()).getBody();
+	    
+	    // Validate organizer existence
+	    if (organizer == null) {
+	        throw new InvalidOrganizerIDException("Organizer does not exist or has an invalid role.");
+	    }
+	    // Save the event and return DTO conversion
+	    return EntityDtoConversion.EntitytoDto(eventRepository.save(EntityDtoConversion.DtotoEntity(event)));
 	}
 	
 	//read
@@ -60,15 +63,6 @@ public class EventService {
     }
 	
 	public List<EventDto> getEventsByOrganizer(int organizerId){
-		
-		String role = userClient.getRoleById(organizerId);
-		if (role == null) {
-		    throw new InvalidOrganizerIDException("Organizer ID is not found in UserService.");
-		}
-
-		if (!role.equals("ORGANIZER")) {
-		    throw new InvalidOrganizerIDException("User with ID " + organizerId + " is not an ORGANIZER.");
-		}
 
 		List<Event> eventsByOrganizerId = eventRepository.findByOrganizerId(organizerId);
 		if(eventsByOrganizerId.isEmpty()) {

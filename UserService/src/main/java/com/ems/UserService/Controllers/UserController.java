@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ems.UserService.Dto.DeleteRequest;
 import com.ems.UserService.Dto.LoginRequest;
-import com.ems.UserService.Dto.PasswordRequest;
 import com.ems.UserService.Dto.TokenDetails;
 import com.ems.UserService.Dto.UserDto;
 import com.ems.UserService.Service.UserService;

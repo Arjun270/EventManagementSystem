@@ -44,7 +44,7 @@ public class AuthController {
     public ResponseEntity<Map<String, Object>> login(@RequestBody LoginRequest loginRequest) {
         TokenDetails user;
         if (loginRequest.getRole().equals("ORGANIZER")) {
-            user = userClient.organizerLogin(loginRequest).getBody();
+            user = userClient.organizerLogin(loginRequest).getBody(); 
         } else {
             user = userClient.userLogin(loginRequest).getBody();
         }

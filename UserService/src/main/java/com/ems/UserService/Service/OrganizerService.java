@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 import com.ems.UserService.Dto.DeleteRequest;
 import com.ems.UserService.Dto.LoginRequest;
 import com.ems.UserService.Dto.OrganizerDto;
-import com.ems.UserService.Dto.PasswordRequest;
 import com.ems.UserService.Dto.TokenDetails;
 import com.ems.UserService.Entity.Organizer;
 import com.ems.UserService.Exceptions.InvalidPasswordException;

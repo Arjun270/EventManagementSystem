@@ -8,7 +8,6 @@ import org.slf4j.LoggerFactory;
 
 import com.ems.UserService.Dto.DeleteRequest;
 import com.ems.UserService.Dto.LoginRequest;
-import com.ems.UserService.Dto.PasswordRequest;
 import com.ems.UserService.Dto.TokenDetails;
 import com.ems.UserService.Dto.UserDto;
 import com.ems.UserService.Entity.User;
@@ -22,7 +21,6 @@ import com.ems.UserService.Utility.PasswordHandler;
 import com.ems.UserService.Utility.Role;
 import com.ems.UserService.Utility.UserEntityDtoConversion;
 
-import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
 @Service

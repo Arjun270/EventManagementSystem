@@ -13,7 +13,6 @@ import com.ems.UserService.Repository.UserRepository;
 import com.ems.UserService.Service.UserService;
 import com.ems.UserService.Utility.PasswordHandler;
 import com.ems.UserService.Utility.Role;
-import com.ems.UserService.Utility.UserEntityDtoConversion;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

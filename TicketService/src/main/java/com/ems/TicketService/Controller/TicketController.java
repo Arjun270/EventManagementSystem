@@ -16,13 +16,15 @@ import com.ems.TicketService.Entity.Ticket;
 import com.ems.TicketService.Service.TicketService;
 
 import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
 
 @RestController
 @RequestMapping("/tickets")
+@AllArgsConstructor
 public class TicketController {
 	
-	@Autowired
-	TicketService ticketService;
+	private final TicketService ticketService;
+	
 	//create
 	@PostMapping("/book")
     public String bookTicket(@RequestBody @Valid Ticket ticket) {

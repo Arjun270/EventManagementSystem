@@ -1,0 +1,39 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: AuthServer
+          uri: lb://AuthServer
+          predicates:
+            - Path=/auth/**
+        - id: UserService
+          uri: lb://UserService
+          predicates:
+            - Path=/users/**
+            - Path=/organizers/**
+          filters:
+            - AuthenticationFilter
+        - id: EventService
+          uri: lb://EventService
+          predicates:
+            - Path=/events/**
+          filters:
+            - AuthenticationFilter
+        - id: TicketService
+          uri: lb://TicketService
+          predicates:
+            - Path=/tickets/**
+          filters:
+            - AuthenticationFilter
+        - id: FeedbackService
+          uri: lb://FeedbackService
+          predicates:
+            - Path=/feedbacks/**
+          filters:
+            - AuthenticationFilter
+        - id: NotificationService
+          uri: lb://NotificationService
+          predicates:
+            - Path=/notifications/**
+          filters:
+            - AuthenticationFilter

@@ -1,33 +1,22 @@
-package com.ems.TicketService.Entity;
+package com.ems.TicketService.Dto;
 
 import java.time.LocalDateTime;
 
 import com.ems.TicketService.Utility.Status;
 
-import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
-@Table(name = "tickets")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Ticket {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int ticketId;
-
+public class TicketDto {
+	private int ticketId;
     @NotNull(message = "Event ID cannot be null")
     @Min(value = 1, message = "Event ID must be greater than 0")
     private int eventId;

@@ -25,7 +25,8 @@ public class SecurityConfig {
         ).build();
     }
 
-    @Bean
+    @SuppressWarnings("removal")
+	@Bean
     public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
         http
             .csrf(ServerHttpSecurity.CsrfSpec::disable)
@@ -33,7 +34,7 @@ public class SecurityConfig {
                 .pathMatchers("/auth/**").permitAll()
                 .anyExchange().authenticated()
             )
-            .oauth2ResourceServer(oauth2 -> oauth2.jwt());
+            .oauth2ResourceServer(ServerHttpSecurity.OAuth2ResourceServerSpec::jwt);        
         return http.build();
     }
 }

@@ -2,7 +2,6 @@ package com.ems.TicketService.Controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ems.TicketService.Entity.Ticket;
+import com.ems.TicketService.Dto.TicketDto;
 import com.ems.TicketService.Service.TicketService;
 
 import jakarta.validation.Valid;
@@ -27,31 +26,31 @@ public class TicketController {
 	
 	//create
 	@PostMapping("/book")
-    public String bookTicket(@RequestBody @Valid Ticket ticket) {
+    public String bookTicket(@RequestBody @Valid TicketDto ticket) {
         return ticketService.bookTicket(ticket);
     }
 	
 	//read
 	@GetMapping("/getTicketById/{ticketId}")
-    public Ticket getTicketById(@PathVariable int ticketId) {
+    public TicketDto getTicketById(@PathVariable int ticketId) {
         return ticketService.getTicketById(ticketId);
     }
 	
-	@GetMapping("/getAllTickets")
-	public List<Ticket> getAllTickets() {
-		return ticketService.getAllTickets();
-		
-	}
-	
 	@GetMapping("/getTicketByUserId/{userId}")
-    public List<Ticket> getTicketsByUserId(@PathVariable int userId) {
+    public List<TicketDto> getTicketsByUserId(@PathVariable int userId) {
         return ticketService.getTicketsByUserId(userId);
     }
 	
 	@GetMapping("/getTicketByEventId/{eventId}")
-    public List<Ticket> getTicketsByEventId(@PathVariable int eventId) {
+    public List<TicketDto> getTicketsByEventId(@PathVariable int eventId) {
         return ticketService.getTicketsByEventId(eventId);
     }
+	
+	@GetMapping("/getAllTickets")
+	public List<TicketDto> getAllTickets() {
+		return ticketService.getAllTickets();
+		
+	}
 	
 	//update
 	@PutMapping("/cancel/{ticketId}")
